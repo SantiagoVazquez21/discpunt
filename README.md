@@ -11,7 +11,7 @@ App móvil para cargar discos de música, puntuar cada canción del 1 al 10 y ve
 ## Cómo está organizado
 
 ```
-AppDiscos/
+Discpunt/
 ├── base-de-datos/
 │   └── tablas.sql            ← script para crear las tablas en Supabase
 │
