@@ -21,7 +21,10 @@ export default function App() {
         screenOptions={{
           headerStyle: { backgroundColor: colores.fondo },
           headerTintColor: colores.texto,
-          cardStyle: { backgroundColor: colores.fondo },
+          // flex: 1 hace que cada pantalla ocupe exactamente el alto disponible.
+          // Sin esto, en la WEB la pantalla crece con su contenido y el
+          // ScrollView no tiene nada que scrollear (en el celular no pasa).
+          cardStyle: { backgroundColor: colores.fondo, flex: 1 },
         }}
       >
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Discpunt' }} />
