@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { View, Text, ScrollView, ActivityIndicator, Alert, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
 import DiscoCard from '../components/DiscoCard';
 import Boton from '../components/Boton';
 import { obtenerDiscos } from '../services/discosService';
 import { obtenerPromedio } from '../services/cancionesService';
 import { colores } from '../estilos/colores';
+import { mostrarAviso } from '../utils/avisos';
 
 export default function HomeScreen({ navigation }) {
   const [discos, setDiscos] = useState([]);
@@ -19,7 +20,7 @@ export default function HomeScreen({ navigation }) {
       setDiscos(listaDiscos);
       setPromedio(datosPromedio);
     } catch (error) {
-      Alert.alert('Error', 'No se pudo conectar con el servidor');
+      mostrarAviso('Error', 'No se pudo conectar con el servidor');
     } finally {
       // "finally" se ejecuta siempre: haya salido bien o mal, dejamos de cargar.
       setCargando(false);

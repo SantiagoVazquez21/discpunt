@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TextInput, ScrollView, ActivityIndicator, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
 import TapaDisco from '../components/TapaDisco';
 import Boton from '../components/Boton';
 import CancionItem from '../components/CancionItem';
@@ -12,6 +12,7 @@ import {
   eliminarCancion,
 } from '../services/cancionesService';
 import { colores } from '../estilos/colores';
+import { mostrarAviso, confirmar } from '../utils/avisos';
 
 export default function DiscoDetalleScreen({ navigation, route }) {
   // Recibimos el id del disco como parámetro desde el Home (o desde el formulario).
@@ -39,7 +40,7 @@ export default function DiscoDetalleScreen({ navigation, route }) {
       setDisco(datosDisco);
       await cargarCanciones();
     } catch (error) {
-      Alert.alert('Error', 'No se pudo cargar el disco');
+      mostrarAviso('Error', 'No se pudo cargar el disco');
     } finally {
       setCargando(false);
     }
@@ -55,24 +56,18 @@ export default function DiscoDetalleScreen({ navigation, route }) {
   // ---------- Disco ----------
 
   const confirmarEliminarDisco = () => {
-    Alert.alert(
+    confirmar(
       'Eliminar disco',
       `¿Seguro que querés eliminar "${disco.titulo}"? También se borran sus canciones.`,
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        {
-          text: 'Eliminar',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await eliminarDisco(disco.id);
-              navigation.goBack(); // volvemos al Home
-            } catch (e) {
-              Alert.alert('Error', 'No se pudo eliminar el disco');
-            }
-          },
-        },
-      ]
+      // Esta función solo se ejecuta si el usuario confirma
+      async () => {
+        try {
+          await eliminarDisco(disco.id);
+          navigation.goBack(); // volvemos al Home
+        } catch (e) {
+          mostrarAviso('Error', 'No se pudo eliminar el disco');
+        }
+      }
     );
   };
 
@@ -86,11 +81,11 @@ export default function DiscoDetalleScreen({ navigation, route }) {
 
   const guardarCancion = async () => {
     if (nombre.trim() === '') {
-      Alert.alert('Revisá los datos', 'El nombre de la canción es obligatorio');
+      mostrarAviso('Revisá los datos', 'El nombre de la canción es obligatorio');
       return;
     }
     if (puntaje < 1 || puntaje > 10) {
-      Alert.alert('Revisá los datos', 'Elegí un puntaje del 1 al 10');
+      mostrarAviso('Revisá los datos', 'Elegí un puntaje del 1 al 10');
       return;
     }
 
@@ -104,7 +99,7 @@ export default function DiscoDetalleScreen({ navigation, route }) {
       limpiarFormulario();
       await cargarCanciones(); // refrescamos la lista
     } catch (e) {
-      Alert.alert('Error', 'No se pudo guardar la canción');
+      mostrarAviso('Error', 'No se pudo guardar la canción');
     }
   };
 
@@ -116,25 +111,18 @@ export default function DiscoDetalleScreen({ navigation, route }) {
   };
 
   const confirmarEliminarCancion = (cancion) => {
-    Alert.alert('Eliminar canción', `¿Eliminar "${cancion.nombre}"?`, [
-      { text: 'Cancelar', style: 'cancel' },
-      {
-        text: 'Eliminar',
-        style: 'destructive',
-        onPress: async () => {
-          try {
-            await eliminarCancion(cancion.id);
-            // Si justo estábamos editando esa canción, limpiamos el formulario
-            if (cancionEditando && cancionEditando.id === cancion.id) {
-              limpiarFormulario();
-            }
-            await cargarCanciones();
-          } catch (e) {
-            Alert.alert('Error', 'No se pudo eliminar la canción');
-          }
-        },
-      },
-    ]);
+    confirmar('Eliminar canción', `¿Eliminar "${cancion.nombre}"?`, async () => {
+      try {
+        await eliminarCancion(cancion.id);
+        // Si justo estábamos editando esa canción, limpiamos el formulario
+        if (cancionEditando && cancionEditando.id === cancion.id) {
+          limpiarFormulario();
+        }
+        await cargarCanciones();
+      } catch (e) {
+        mostrarAviso('Error', 'No se pudo eliminar la canción');
+      }
+    });
   };
 
   // ---------- Vista ----------

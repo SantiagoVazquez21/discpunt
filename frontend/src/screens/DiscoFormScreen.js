@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TextInput, ScrollView, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput, ScrollView, StyleSheet } from 'react-native';
 import Boton from '../components/Boton';
 import TapaDisco from '../components/TapaDisco';
 import { crearDisco, actualizarDisco } from '../services/discosService';
 import { colores } from '../estilos/colores';
+import { mostrarAviso } from '../utils/avisos';
 
 // Esta pantalla sirve para CREAR y para EDITAR un disco.
 // - Si llegamos desde el Home: no recibe parámetros -> crea un disco nuevo.
@@ -57,7 +58,7 @@ export default function DiscoFormScreen({ navigation, route }) {
   const guardar = async () => {
     const error = validar();
     if (error) {
-      Alert.alert('Revisá los datos', error);
+      mostrarAviso('Revisá los datos', error);
       return; // cortamos acá: no se manda nada al backend
     }
 
@@ -82,7 +83,7 @@ export default function DiscoFormScreen({ navigation, route }) {
         navigation.replace('DiscoDetalle', { discoId: nuevo.id });
       }
     } catch (e) {
-      Alert.alert('Error', 'No se pudo guardar el disco');
+      mostrarAviso('Error', 'No se pudo guardar el disco');
     } finally {
       setGuardando(false);
     }
