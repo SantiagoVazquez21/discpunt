@@ -95,14 +95,24 @@ npm run dev
 ```
 Si abrís http://localhost:3000 tiene que aparecer `Servidor funcionando ✅`.
 
-### 3. Frontend
-1. Averiguá la IP de tu PC con `ipconfig` (la **Dirección IPv4**) y ponela en `frontend/src/config.js`.
-2. Instalá y arrancá:
-   ```bash
-   cd frontend
-   npm install
-   npx expo start
-   ```
-3. Escaneá el QR con **Expo Go** en el celular. El celular y la PC tienen que estar en la **misma red Wi-Fi**.
+### 3. Backend en Vercel (para que ande sin la PC prendida)
+1. En [vercel.com/new](https://vercel.com/new) importá este repo.
+2. **Root Directory:** `backend`.
+3. **Environment Variables:** `SUPABASE_URL` y `SUPABASE_KEY` (los mismos valores del `.env`).
+4. **Deploy.** Vercel detecta Express solo, a partir de `index.js`.
 
-> Si la app dice "No se pudo conectar con el servidor": revisá que el backend esté corriendo, que la IP de `config.js` sea la correcta y que el Firewall de Windows deje pasar a Node.js por el puerto 3000.
+El backend publicado está en **https://discpunt-api.vercel.app** y el front ya apunta ahí (`frontend/src/config.js`).
+
+### 4. Frontend en Expo Snack (web)
+1. En [snack.expo.dev](https://snack.expo.dev), en el **⋮** al lado de "Project", elegí **Import git repository**.
+2. Pegá `https://github.com/SantiagoVazquez21/discpunt/tree/main/frontend` y tocá **Import repository**.
+3. Elegí la vista previa **Web**.
+
+> El front usa **Expo SDK 54** porque es la versión que Snack compila. En web, `Alert.alert` no muestra nada, así que los avisos pasan por `src/utils/avisos.js`, que usa `window.alert` / `window.confirm` en web y `Alert` en el celular.
+
+### Opcional: correr el front en la PC
+```bash
+cd frontend
+npm install
+npx expo start --web
+```
