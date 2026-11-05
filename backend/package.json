@@ -1,7 +1,7 @@
 {
-  "name": "app-discos-backend",
+  "name": "discpunt-backend",
   "version": "1.0.0",
-  "description": "API de la App Discos (Express + Supabase)",
+  "description": "API de Discpunt (Express + Supabase)",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",

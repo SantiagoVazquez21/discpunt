@@ -1,5 +1,5 @@
 -- =====================================================================
---  App Discos - Tablas de la base de datos
+--  Discpunt - Tablas de la base de datos
 --  Copiar todo este archivo y ejecutarlo en Supabase:
 --  Dashboard -> SQL Editor -> New query -> pegar -> Run
 -- =====================================================================

@@ -24,7 +24,7 @@ export default function App() {
           cardStyle: { backgroundColor: colores.fondo },
         }}
       >
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Mis Discos' }} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Discpunt' }} />
         <Stack.Screen name="DiscoForm" component={DiscoFormScreen} options={{ title: 'Disco' }} />
         <Stack.Screen
           name="DiscoDetalle"

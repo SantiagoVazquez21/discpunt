@@ -1,4 +1,4 @@
-# App Discos 🎵
+# Discpunt 🎵
 
 App móvil para cargar discos de música, puntuar cada canción del 1 al 10 y ver en el inicio el **promedio de todas las canciones**.
 
@@ -76,7 +76,7 @@ Si se borra un disco, sus canciones se borran solas (`on delete cascade`).
 ## Cómo correrlo
 
 ### 1. Supabase
-1. Entrá a [supabase.com](https://supabase.com) y abrí tu proyecto (o creá uno nuevo).
+1. Entrá a [supabase.com](https://supabase.com) y abrí el proyecto **Discpunt** (o creá uno nuevo).
 2. Andá a **SQL Editor → New query**, pegá todo el contenido de `base-de-datos/tablas.sql` y tocá **Run**.
 3. En **Project Settings → API Keys** copiá:
    - la **Project URL**
