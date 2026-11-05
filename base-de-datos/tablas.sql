@@ -35,8 +35,12 @@ create table canciones (
   disco_id bigint not null references discos(id) on delete cascade,
 
   nombre text not null,
-  puntaje int not null
-    check (puntaje between 1 and 10), -- la base rechaza puntajes fuera de 1 a 10
+  -- numeric(3,1) = número con hasta 1 decimal (ej: 7.5). Con "int" solo
+  -- se podrían guardar enteros.
+  puntaje numeric(3,1) not null
+    -- Entre 1 y 10, y solo enteros o ",5": si lo multiplicamos por 2
+    -- tiene que dar un número entero (7.5 * 2 = 15 sí, 7.3 * 2 = 14.6 no).
+    check (puntaje between 1 and 10 and puntaje * 2 = round(puntaje * 2)),
 
   created_at timestamptz default now()
 );

@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colores } from '../estilos/colores';
+import { formatearPuntaje } from '../utils/formato';
 
 // Una fila de la lista de canciones de un disco.
 // Props:
@@ -14,7 +15,7 @@ export default function CancionItem({ cancion, numero, onEditar, onEliminar }) {
 
       <View style={styles.info}>
         <Text style={styles.nombre}>{cancion.nombre}</Text>
-        <Text style={styles.puntaje}>⭐ {cancion.puntaje}/10</Text>
+        <Text style={styles.puntaje}>⭐ {formatearPuntaje(cancion.puntaje)}/10</Text>
       </View>
 
       <TouchableOpacity onPress={onEditar}>

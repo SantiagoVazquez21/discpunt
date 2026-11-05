@@ -5,6 +5,7 @@ import Boton from '../components/Boton';
 import { obtenerDiscos } from '../services/discosService';
 import { obtenerPromedio } from '../services/cancionesService';
 import { colores } from '../estilos/colores';
+import { formatearPuntaje } from '../utils/formato';
 import { mostrarAviso } from '../utils/avisos';
 
 export default function HomeScreen({ navigation }) {
@@ -49,7 +50,7 @@ export default function HomeScreen({ navigation }) {
         ) : (
           <>
             <Text style={styles.numeroPromedio}>
-              {promedio.promedio}
+              {formatearPuntaje(promedio.promedio)}
               <Text style={styles.sobreDiez}> / 10</Text>
             </Text>
             <Text style={styles.etiqueta}>sobre {promedio.cantidad} canciones</Text>

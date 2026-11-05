@@ -85,7 +85,7 @@ export default function DiscoDetalleScreen({ navigation, route }) {
       return;
     }
     if (puntaje < 1 || puntaje > 10) {
-      mostrarAviso('Revisá los datos', 'Elegí un puntaje del 1 al 10');
+      mostrarAviso('Revisá los datos', 'Elegí un puntaje del 1 al 10 (se puede con ,5)');
       return;
     }
 
