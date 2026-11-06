@@ -1,6 +1,6 @@
 # Discpunt 🎵
 
-App móvil para cargar discos de música, puntuar cada canción del 1 al 10 y ver en el inicio el **promedio de todas las canciones**.
+App móvil para cargar discos de música, puntuar cada canción del 1 al 10 (de a medio punto) y ver en el inicio **el promedio de cada disco, ordenados de mayor a menor**.
 
 - **Front:** React Native con Expo + React Navigation (Stack) + Axios
 - **Back:** Node.js + Express, ordenado por capas (rutas → controllers → services)
@@ -60,13 +60,12 @@ Si se borra un disco, sus canciones se borran solas (`on delete cascade`).
 
 | Método | URL | Qué hace |
 |---|---|---|
-| GET | `/api/discos` | Lista todos los discos |
+| GET | `/api/discos` | Lista los discos con su promedio, de mayor a menor |
 | GET | `/api/discos/:id` | Trae un disco |
 | POST | `/api/discos` | Crea un disco |
 | PUT | `/api/discos/:id` | Edita un disco |
 | DELETE | `/api/discos/:id` | Borra un disco (y sus canciones) |
 | GET | `/api/canciones/disco/:discoId` | Canciones de un disco |
-| GET | `/api/canciones/promedio` | Promedio de todas las canciones |
 | POST | `/api/canciones` | Agrega una canción |
 | PUT | `/api/canciones/:id` | Edita una canción |
 | DELETE | `/api/canciones/:id` | Borra una canción |
