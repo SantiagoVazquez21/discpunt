@@ -11,16 +11,6 @@ const obtenerPorDisco = async (req, res) => {
   }
 };
 
-const obtenerPromedio = async (req, res) => {
-  try {
-    const data = await service.obtenerPromedio();
-    res.json(data);
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ error: 'Error al calcular el promedio' });
-  }
-};
-
 const crear = async (req, res) => {
   try {
     // Solo los campos que esperamos. disco_id dice a qué disco pertenece.
@@ -57,4 +47,4 @@ const eliminar = async (req, res) => {
   }
 };
 
-module.exports = { obtenerPorDisco, obtenerPromedio, crear, actualizar, eliminar };
+module.exports = { obtenerPorDisco, crear, actualizar, eliminar };

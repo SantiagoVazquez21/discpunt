@@ -8,12 +8,6 @@ export const obtenerCancionesDeDisco = async (discoId) => {
   return res.data;
 };
 
-// Devuelve { promedio, cantidad } de TODAS las canciones cargadas.
-export const obtenerPromedio = async () => {
-  const res = await axios.get(`${BASE_URL}/canciones/promedio`);
-  return res.data;
-};
-
 export const crearCancion = async (cancion) => {
   const res = await axios.post(`${BASE_URL}/canciones`, cancion);
   return res.data;
