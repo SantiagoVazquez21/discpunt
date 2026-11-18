@@ -107,6 +107,8 @@ El backend publicado está en **https://discpunt-api.vercel.app** y el front ya 
 2. Pegá `https://github.com/SantiagoVazquez21/discpunt/tree/main/frontend` y tocá **Import repository**.
 3. Elegí la vista previa **Web**.
 
+> Si Snack dice *"Git imports have been temporarily disabled"*: en el mismo menú **⋮** elegí **Import files** (o arrastrá los archivos al panel de archivos) y subí desde la carpeta `frontend`: `App.js`, `app.json`, `package.json` y la carpeta `src` completa. **No** subas `node_modules`.
+
 > El front usa **Expo SDK 54** porque es la versión que Snack compila. En web, `Alert.alert` no muestra nada, así que los avisos pasan por `src/utils/avisos.js`, que usa `window.alert` / `window.confirm` en web y `Alert` en el celular.
 
 ### Opcional: correr el front en la PC
