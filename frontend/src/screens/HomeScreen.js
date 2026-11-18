@@ -77,7 +77,7 @@ export default function HomeScreen({ navigation }) {
         style={styles.buscador}
         value={busqueda}
         onChangeText={setBusqueda}
-        placeholder="🔍 Buscar por título o banda"
+        placeholder="Buscar por título o banda"
         placeholderTextColor={colores.textoSuave}
       />
 
@@ -140,11 +140,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   buscador: {
-    backgroundColor: colores.tarjeta,
+    backgroundColor: colores.fondo,
     color: colores.texto,
     borderWidth: 1,
     borderColor: colores.borde,
-    borderRadius: 10,
+    borderRadius: 8,
     padding: 12,
     fontSize: 15,
   },

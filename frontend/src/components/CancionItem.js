@@ -15,7 +15,7 @@ export default function CancionItem({ cancion, numero, onEditar, onEliminar }) {
 
       <View style={styles.info}>
         <Text style={styles.nombre}>{cancion.nombre}</Text>
-        <Text style={styles.puntaje}>⭐ {formatearPuntaje(cancion.puntaje)}/10</Text>
+        <Text style={styles.puntaje}>{formatearPuntaje(cancion.puntaje)} / 10</Text>
       </View>
 
       <TouchableOpacity onPress={onEditar}>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colores.tarjeta,
-    borderRadius: 10,
+    borderRadius: 8,
     padding: 12,
     marginBottom: 8,
   },

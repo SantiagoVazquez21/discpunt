@@ -168,11 +168,11 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   input: {
-    backgroundColor: colores.tarjeta,
+    backgroundColor: colores.fondo,
     color: colores.texto,
     borderWidth: 1,
     borderColor: colores.borde,
-    borderRadius: 10,
+    borderRadius: 8,
     padding: 12,
     fontSize: 15,
   },

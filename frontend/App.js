@@ -14,10 +14,10 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <Stack.Navigator
         initialRouteName="Home"
-        // Estilos que comparten todas las pantallas (barra de arriba oscura)
+        // Estilos que comparten todas las pantallas (barra de arriba blanca)
         screenOptions={{
           headerStyle: { backgroundColor: colores.fondo },
           headerTintColor: colores.texto,

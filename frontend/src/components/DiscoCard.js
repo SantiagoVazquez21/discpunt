@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', // tapa a la izquierda, texto al medio, promedio a la derecha
     alignItems: 'center',
     backgroundColor: colores.tarjeta,
-    borderRadius: 12,
+    borderRadius: 8,
     padding: 12,
     marginBottom: 10,
   },

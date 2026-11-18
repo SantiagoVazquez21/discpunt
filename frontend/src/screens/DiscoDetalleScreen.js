@@ -175,7 +175,7 @@ export default function DiscoDetalleScreen({ navigation, route }) {
 
       {/* ----- Formulario de canción ----- */}
       {discoCompleto && !cancionEditando ? (
-        <Text style={styles.completo}>Ya cargaste todas las canciones de este disco 🎉</Text>
+        <Text style={styles.completo}>Ya cargaste todas las canciones de este disco.</Text>
       ) : (
         <View style={styles.formulario}>
           <Text style={styles.subtitulo}>
@@ -257,6 +257,7 @@ const styles = StyleSheet.create({
     color: colores.textoSuave,
     fontSize: 17,
     marginTop: 2,
+    textAlign: 'center',
   },
   progreso: {
     color: colores.primario,
@@ -272,7 +273,7 @@ const styles = StyleSheet.create({
   },
   formulario: {
     backgroundColor: colores.tarjeta,
-    borderRadius: 12,
+    borderRadius: 8,
     padding: 14,
     marginTop: 20,
     marginBottom: 20,
@@ -293,7 +294,7 @@ const styles = StyleSheet.create({
     color: colores.texto,
     borderWidth: 1,
     borderColor: colores.borde,
-    borderRadius: 10,
+    borderRadius: 8,
     padding: 12,
     fontSize: 15,
   },

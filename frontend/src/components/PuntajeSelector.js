@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     backgroundColor: colores.fondo,
     borderWidth: 1,
     borderColor: colores.borde,
-    borderRadius: 10,
+    borderRadius: 8,
     overflow: 'hidden', // para que el Picker respete las esquinas redondeadas
   },
   picker: {
