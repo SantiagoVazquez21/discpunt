@@ -13,7 +13,7 @@ const obtenerTodos = async () => {
   const { data, error } = await supabase
     .from('discos')
     .select('*, canciones(puntaje)')
-    .order('id', { ascending: false }); // si dos discos empatan, el más nuevo va primero
+    .order('id', { ascending: false }); // los más nuevos primero (el orden por promedio lo elige la app)
   if (error) throw error;
 
   // Calculamos el promedio de cada disco.
@@ -38,14 +38,8 @@ const obtenerTodos = async () => {
     };
   });
 
-  // Ordenamos de MAYOR a MENOR promedio.
-  // Los discos sin promedio (null) los tratamos como -1 para que queden al final.
-  discos.sort((a, b) => {
-    const promedioA = a.promedio === null ? -1 : a.promedio;
-    const promedioB = b.promedio === null ? -1 : b.promedio;
-    return promedioB - promedioA; // si da positivo, b va antes que a
-  });
-
+  // No ordenamos acá: la app ordena de mayor a menor o de menor a mayor
+  // según el botón que elija el usuario (ver HomeScreen.js).
   return discos;
 };
 

@@ -60,7 +60,7 @@ Si se borra un disco, sus canciones se borran solas (`on delete cascade`).
 
 | Método | URL | Qué hace |
 |---|---|---|
-| GET | `/api/discos` | Lista los discos con su promedio, de mayor a menor |
+| GET | `/api/discos` | Lista los discos con su promedio (la app los filtra y ordena) |
 | GET | `/api/discos/:id` | Trae un disco |
 | POST | `/api/discos` | Crea un disco |
 | PUT | `/api/discos/:id` | Edita un disco |
