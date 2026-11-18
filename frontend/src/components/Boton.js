@@ -1,12 +1,6 @@
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { colores } from '../estilos/colores';
 
-// Botón reutilizable. Lo usamos en todas las pantallas.
-// Props:
-//   titulo   -> el texto del botón
-//   onPress  -> la función que se ejecuta al tocarlo
-//   tipo     -> 'primario' (azul), 'secundario' (solo borde) o 'peligro' (rojo)
-//   desactivado -> si es true, el botón no se puede tocar
 export default function Boton({ titulo, onPress, tipo = 'primario', desactivado = false }) {
   return (
     <TouchableOpacity

@@ -6,16 +6,12 @@ import { crearDisco, actualizarDisco } from '../services/discosService';
 import { colores } from '../estilos/colores';
 import { mostrarAviso } from '../utils/avisos';
 
-// Esta pantalla sirve para CREAR y para EDITAR un disco.
-// - Si llegamos desde el Home: no recibe parámetros -> crea un disco nuevo.
-// - Si llegamos desde el detalle con "Editar": recibe el disco -> lo edita.
 export default function DiscoFormScreen({ navigation, route }) {
   const discoEditando = route.params ? route.params.disco : null;
   // Cuántas canciones ya tiene cargadas (para no dejar bajar la cantidad por debajo de eso)
   const cancionesCargadas = route.params ? route.params.cancionesCargadas : 0;
 
   // Si estamos editando, los campos arrancan con los datos del disco.
-  // TextInput trabaja con texto, por eso la cantidad se pasa a String.
   const [titulo, setTitulo] = useState(discoEditando ? discoEditando.titulo : '');
   const [banda, setBanda] = useState(discoEditando ? discoEditando.banda : '');
   const [cantidad, setCantidad] = useState(
@@ -31,7 +27,6 @@ export default function DiscoFormScreen({ navigation, route }) {
     navigation.setOptions({ title: discoEditando ? 'Editar disco' : 'Nuevo disco' });
   }, [navigation, discoEditando]);
 
-  // Devuelve un mensaje de error, o null si todo está bien.
   const validar = () => {
     if (titulo.trim() === '') {
       return 'El título del disco es obligatorio';
@@ -41,7 +36,7 @@ export default function DiscoFormScreen({ navigation, route }) {
     }
 
     const numero = Number(cantidad);
-    // Number.isInteger descarta letras ("abc" da NaN) y decimales (2.5)
+
     if (!Number.isInteger(numero) || numero <= 0) {
       return 'La cantidad de canciones tiene que ser un número entero mayor a 0';
     }
@@ -59,7 +54,7 @@ export default function DiscoFormScreen({ navigation, route }) {
     const error = validar();
     if (error) {
       mostrarAviso('Revisá los datos', error);
-      return; // cortamos acá: no se manda nada al backend
+      return;
     }
 
     // Armamos el objeto con los nombres de columna de la base de datos.
@@ -77,9 +72,6 @@ export default function DiscoFormScreen({ navigation, route }) {
         navigation.goBack(); // volvemos al detalle del disco
       } else {
         const nuevo = await crearDisco(datos);
-        // "replace" cambia esta pantalla por el detalle del disco nuevo,
-        // así podemos empezar a cargar sus canciones enseguida.
-        // (Si usáramos navigate, al volver atrás aparecería otra vez el formulario).
         navigation.replace('DiscoDetalle', { discoId: nuevo.id });
       }
     } catch (e) {
@@ -105,7 +97,7 @@ export default function DiscoFormScreen({ navigation, route }) {
         style={styles.input}
         value={titulo}
         onChangeText={setTitulo}
-        placeholder="Ej: Abbey Road"
+        placeholder="Ej: Mezmerize"
         placeholderTextColor={colores.textoSuave}
       />
 
@@ -114,7 +106,7 @@ export default function DiscoFormScreen({ navigation, route }) {
         style={styles.input}
         value={banda}
         onChangeText={setBanda}
-        placeholder="Ej: The Beatles"
+        placeholder="Ej: System of a down"
         placeholderTextColor={colores.textoSuave}
       />
 
@@ -123,9 +115,9 @@ export default function DiscoFormScreen({ navigation, route }) {
         style={styles.input}
         value={cantidad}
         onChangeText={setCantidad}
-        placeholder="Ej: 17"
+        placeholder="Ej: 14"
         placeholderTextColor={colores.textoSuave}
-        keyboardType="numeric" // en el celular abre el teclado numérico
+        keyboardType="numeric"
       />
 
       <Text style={styles.label}>Link de la foto del disco</Text>

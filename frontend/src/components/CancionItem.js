@@ -2,12 +2,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colores } from '../estilos/colores';
 import { formatearPuntaje } from '../utils/formato';
 
-// Una fila de la lista de canciones de un disco.
-// Props:
-//   cancion    -> el objeto canción { id, nombre, puntaje, ... }
-//   numero     -> la posición en la lista (1, 2, 3...)
-//   onEditar   -> qué hacer al tocar "Editar"
-//   onEliminar -> qué hacer al tocar "Borrar"
 export default function CancionItem({ cancion, numero, onEditar, onEliminar }) {
   return (
     <View style={styles.fila}>

@@ -3,12 +3,6 @@ import TapaDisco from './TapaDisco';
 import { colores } from '../estilos/colores';
 import { formatearPuntaje } from '../utils/formato';
 
-// Tarjeta de un disco para la lista del Home.
-// Props:
-//   disco   -> el disco que viene del backend, con su promedio:
-//              { titulo, banda, foto_url, cantidad_canciones, promedio, cantidad_puntuadas }
-//              (promedio es null si todavía no tiene canciones puntuadas)
-//   onPress -> qué hacer al tocar la tarjeta (ir al detalle)
 export default function DiscoCard({ disco, onPress }) {
   const tienePromedio = disco.promedio !== null;
 

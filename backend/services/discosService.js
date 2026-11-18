@@ -1,15 +1,6 @@
 const supabase = require('../config/supabase');
 
-// El service es la ÚNICA capa que habla con la base de datos.
-// Cada función hace una consulta a Supabase y devuelve los datos.
-// Si Supabase devuelve un error, lo "tiramos" (throw) para que el controller
-// lo atrape en su catch y responda con un 500.
-
 const obtenerTodos = async () => {
-  // Traemos cada disco JUNTO con los puntajes de sus canciones.
-  // "canciones(puntaje)" funciona porque la tabla canciones tiene la clave
-  // foránea disco_id: Supabase sabe qué canciones son de cada disco.
-  // Resultado: [{ id, titulo, ..., canciones: [{ puntaje: 8 }, { puntaje: 7.5 }] }, ...]
   const { data, error } = await supabase
     .from('discos')
     .select('*, canciones(puntaje)')
@@ -23,10 +14,10 @@ const obtenerTodos = async () => {
     let promedio = null; // null = todavía no tiene canciones puntuadas
     if (cantidadPuntuadas > 0) {
       const suma = disco.canciones.reduce((total, cancion) => total + cancion.puntaje, 0);
-      promedio = Math.round((suma / cantidadPuntuadas) * 10) / 10; // 1 decimal (ej: 7.4)
+      promedio = Math.round((suma / cantidadPuntuadas) * 10) / 10; 
     }
 
-    // Devolvemos el disco con su promedio (la lista de canciones no hace falta en el Home)
+    // Devolvemos el disco con su promedio
     return {
       id: disco.id,
       titulo: disco.titulo,
@@ -38,8 +29,6 @@ const obtenerTodos = async () => {
     };
   });
 
-  // No ordenamos acá: la app ordena de mayor a menor o de menor a mayor
-  // según el botón que elija el usuario (ver HomeScreen.js).
   return discos;
 };
 

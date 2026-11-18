@@ -24,7 +24,7 @@ export default function DiscoDetalleScreen({ navigation, route }) {
 
   // Estados del formulario de canción
   const [nombre, setNombre] = useState('');
-  const [puntaje, setPuntaje] = useState(0); // 0 = todavía no eligió puntaje
+  const [puntaje, setPuntaje] = useState(0); 
   // Si es null estamos AGREGANDO; si tiene una canción, la estamos EDITANDO.
   const [cancionEditando, setCancionEditando] = useState(null);
 
@@ -48,12 +48,11 @@ export default function DiscoDetalleScreen({ navigation, route }) {
 
   useEffect(() => {
     // Recargamos cada vez que la pantalla vuelve a verse
-    // (por ejemplo, al volver de "Editar disco" con los datos cambiados).
     const desuscribir = navigation.addListener('focus', cargarDatos);
     return desuscribir;
   }, [navigation]);
 
-  // ---------- Disco ----------
+  // Disco
 
   const confirmarEliminarDisco = () => {
     confirmar(
@@ -71,7 +70,7 @@ export default function DiscoDetalleScreen({ navigation, route }) {
     );
   };
 
-  // ---------- Canciones ----------
+  // Canciones
 
   const limpiarFormulario = () => {
     setNombre('');
@@ -125,7 +124,7 @@ export default function DiscoDetalleScreen({ navigation, route }) {
     });
   };
 
-  // ---------- Vista ----------
+  // Vista
 
   if (cargando || !disco) {
     return (

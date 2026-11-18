@@ -13,7 +13,7 @@ const obtenerPorDisco = async (req, res) => {
 
 const crear = async (req, res) => {
   try {
-    // Solo los campos que esperamos. disco_id dice a qué disco pertenece.
+  
     const { disco_id, nombre, puntaje } = req.body;
 
     const nueva = await service.crear({ disco_id, nombre, puntaje });
@@ -26,7 +26,6 @@ const crear = async (req, res) => {
 
 const actualizar = async (req, res) => {
   try {
-    // Al editar NO dejamos cambiar el disco_id: la canción sigue en su disco.
     const { nombre, puntaje } = req.body;
 
     const data = await service.actualizar(req.params.id, { nombre, puntaje });

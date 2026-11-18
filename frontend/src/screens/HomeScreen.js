@@ -11,8 +11,8 @@ export default function HomeScreen({ navigation }) {
   const [cargando, setCargando] = useState(true);
 
   // Estados de los filtros
-  const [busqueda, setBusqueda] = useState(''); // texto del buscador
-  const [orden, setOrden] = useState('mayor'); // 'mayor' = mayor a menor, 'menor' = menor a mayor
+  const [busqueda, setBusqueda] = useState('');
+  const [orden, setOrden] = useState('mayor'); 
 
   const cargarDatos = async () => {
     try {
@@ -23,23 +23,19 @@ export default function HomeScreen({ navigation }) {
     } catch (error) {
       mostrarAviso('Error', 'No se pudo conectar con el servidor');
     } finally {
-      // "finally" se ejecuta siempre: haya salido bien o mal, dejamos de cargar.
       setCargando(false);
     }
   };
 
   useEffect(() => {
     // El evento 'focus' se dispara cada vez que esta pantalla vuelve a mostrarse
-    // (al abrir la app y al volver desde otra pantalla). Así, si cargamos un disco
-    // o puntuamos canciones, al volver al Home los promedios se actualizan.
     const desuscribir = navigation.addListener('focus', cargarDatos);
 
     // Al salir de la pantalla dejamos de escuchar el evento.
     return desuscribir;
   }, [navigation]);
 
-  // ---------- Filtro: buscador ----------
-  // Pasamos todo a minúsculas para que "radiohead" encuentre "Radiohead".
+  // Filtro: buscador
   const textoBuscado = busqueda.trim().toLowerCase();
   const discosFiltrados = discos.filter(
     (disco) =>
@@ -47,10 +43,8 @@ export default function HomeScreen({ navigation }) {
       disco.banda.toLowerCase().includes(textoBuscado)
   );
 
-  // ---------- Orden: por promedio ----------
-  // sort() modifica el array original, por eso primero hacemos una copia con [...].
+  // Orden: por promedio
   const discosOrdenados = [...discosFiltrados].sort((a, b) => {
-    // Los discos sin promedio (null) van SIEMPRE al final, en los dos órdenes.
     if (a.promedio === null && b.promedio === null) return 0;
     if (a.promedio === null) return 1; // a va después
     if (b.promedio === null) return -1; // b va después
@@ -83,7 +77,6 @@ export default function HomeScreen({ navigation }) {
 
       <View style={styles.filaOrden}>
         <View style={styles.botonMitad}>
-          {/* El botón del orden activo se pinta violeta (primario), el otro gris */}
           <Boton
             titulo="Mayor a menor"
             tipo={orden === 'mayor' ? 'primario' : 'secundario'}

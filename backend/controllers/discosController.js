@@ -1,8 +1,5 @@
 const service = require('../services/discosService');
 
-// El controller recibe la petición (req), le pide al service lo que haga falta
-// y devuelve la respuesta (res). NO habla con la base de datos directamente.
-
 const obtener = async (req, res) => {
   try {
     const data = await service.obtenerTodos();
@@ -26,8 +23,6 @@ const obtenerUno = async (req, res) => {
 
 const crear = async (req, res) => {
   try {
-    // Tomamos del body SOLO los campos que esperamos.
-    // Así nadie puede mandarnos otros datos (por ejemplo un "id" inventado).
     const { titulo, banda, cantidad_canciones, foto_url } = req.body;
 
     const nuevo = await service.crear({ titulo, banda, cantidad_canciones, foto_url });
