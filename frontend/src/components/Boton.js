@@ -5,7 +5,7 @@ import { colores } from '../estilos/colores';
 // Props:
 //   titulo   -> el texto del botón
 //   onPress  -> la función que se ejecuta al tocarlo
-//   tipo     -> 'primario' (verde), 'secundario' (solo borde) o 'peligro' (rojo)
+//   tipo     -> 'primario' (azul), 'secundario' (solo borde) o 'peligro' (rojo)
 //   desactivado -> si es true, el botón no se puede tocar
 export default function Boton({ titulo, onPress, tipo = 'primario', desactivado = false }) {
   return (
@@ -14,7 +14,7 @@ export default function Boton({ titulo, onPress, tipo = 'primario', desactivado 
       onPress={onPress}
       disabled={desactivado}
     >
-      {/* El secundario tiene fondo blanco, así que su texto va oscuro */}
+      {/* El secundario no tiene fondo de color, así que su texto usa el color normal */}
       <Text style={[styles.texto, tipo === 'secundario' && styles.textoSecundario]}>
         {titulo}
       </Text>
